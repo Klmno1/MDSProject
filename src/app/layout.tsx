@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Button from '@mui/material/Button';
+import { DataProvider } from '@/lib/dataContext';
+import { loadProducts, loadSales } from '@/lib/loadExcel';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,7 +21,10 @@ export const metadata: Metadata = {
   description: 'Analyze product returns, seasonality, and customer behavior.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const products = await loadProducts();
+  const sales = await loadSales();
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased font-sans bg-gray-950 text-gray-100">
@@ -30,16 +35,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/product-group" className="transition-transform transform hover:scale-110 hover:brightness-110">
                 <Button variant="contained" color="primary" fullWidth className="!shadow-lg !transition-all !duration-300">商品群分析</Button>
               </a>
-              <a href="/time" className="transition-transform transform hover:scale-110 hover:brightness-110">
-                <Button variant="contained" color="success" fullWidth className="!shadow-lg !transition-all !duration-300">上架時機建議</Button>
-              </a>
-              <a href="/customer" className="transition-transform transform hover:scale-110 hover:brightness-110">
-                <Button variant="contained" color="secondary" fullWidth className="!shadow-lg !transition-all !duration-300">顧客購買紀錄</Button>
-              </a>
+              {/* <a href="/product-group" className="transition-transform transform hover:scale-110 hover:brightness-110">
+                <Button variant="contained" color="primary" fullWidth className="!shadow-lg !transition-all !duration-300">商品群分析</Button>
+              </a> */}
             </nav>
           </aside>
           <main className="flex-1 p-10 bg-gray-900 text-gray-100 rounded-l-3xl shadow-inner">
-            {children}
+            <DataProvider products={products} sales={sales}>
+              {children}
+            </DataProvider>
           </main>
         </div>
       </body>

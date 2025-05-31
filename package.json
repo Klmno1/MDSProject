@@ -28,6 +28,7 @@
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.3",
+    "exceljs": "^4.4.0",
     "framer-motion": "^11.11.17",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
@@ -45,6 +46,7 @@
     "recharts": "^2.15.3",
     "tailwind-merge": "^3.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "xlsx": "^0.18.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
