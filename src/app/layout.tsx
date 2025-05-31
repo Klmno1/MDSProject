@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Button from '@mui/material/Button';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,24 +15,33 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "MDS Project",
-  description: "2025 MDS Project",
-  icons: {
-    icon: "/IFEELU_Logo_transparent.png",
-  },
+  title: 'Product Intelligence Dashboard',
+  description: 'Analyze product returns, seasonality, and customer behavior.',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="antialiased font-sans bg-gray-950 text-gray-100">
+        <div className="flex min-h-screen">
+          <aside className="w-[15%] bg-gray-900 text-gray-100 shadow-2xl p-6 space-y-6 border-r border-gray-800 rounded-r-3xl z-10">
+            <h1 className="text-2xl font-bold">功能選單</h1>
+            <nav className="flex flex-col gap-3">
+              <a href="/product-group" className="transition-transform transform hover:scale-110 hover:brightness-110">
+                <Button variant="contained" color="primary" fullWidth className="!shadow-lg !transition-all !duration-300">商品群分析</Button>
+              </a>
+              <a href="/time" className="transition-transform transform hover:scale-110 hover:brightness-110">
+                <Button variant="contained" color="success" fullWidth className="!shadow-lg !transition-all !duration-300">上架時機建議</Button>
+              </a>
+              <a href="/customer" className="transition-transform transform hover:scale-110 hover:brightness-110">
+                <Button variant="contained" color="secondary" fullWidth className="!shadow-lg !transition-all !duration-300">顧客購買紀錄</Button>
+              </a>
+            </nav>
+          </aside>
+          <main className="flex-1 p-10 bg-gray-900 text-gray-100 rounded-l-3xl shadow-inner">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
