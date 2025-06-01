@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Button from '@mui/material/Button';
 import { DataProvider } from '@/lib/dataContext';
-import { loadProducts, loadSales } from '@/lib/loadExcel';
+import { loadProducts, loadSales, loadProductRules, loadHolidaysRules, loadSeasonsRules } from '@/lib/loadExcel';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,6 +24,9 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const products = await loadProducts();
   const sales = await loadSales();
+  const productsRules = await loadProductRules();
+  const holidaysRules = await loadHolidaysRules();
+  const seasonsRules = await loadSeasonsRules();
 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
@@ -35,13 +38,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <a href="/product-group" className="transition-transform transform hover:scale-110 hover:brightness-110">
                 <Button variant="contained" color="primary" fullWidth className="!shadow-lg !transition-all !duration-300">商品群分析</Button>
               </a>
-              {/* <a href="/product-group" className="transition-transform transform hover:scale-110 hover:brightness-110">
-                <Button variant="contained" color="primary" fullWidth className="!shadow-lg !transition-all !duration-300">商品群分析</Button>
-              </a> */}
             </nav>
           </aside>
           <main className="flex-1 p-10 bg-gray-900 text-gray-100 rounded-l-3xl shadow-inner">
-            <DataProvider products={products} sales={sales}>
+            <DataProvider products={products} sales={sales} productsRules={productsRules} holidaysRules={holidaysRules} seasonsRules={seasonsRules}>
               {children}
             </DataProvider>
           </main>

@@ -37,7 +37,10 @@ export default function CountrySalesChart({ sales }: Props) {
   );
 
   // Sort countries by salesQty in descending order
-  const data = aggregatedData.sort((a, b) => b.salesQty - a.salesQty);
+  // const data = aggregatedData.sort((a, b) => b.salesQty - a.salesQty);
+  const data = aggregatedData
+  .sort((a, b) => b.salesQty - a.salesQty)
+  .slice(0, 10);
 
   const barProps = {
     maxBarSize: 40,
@@ -47,7 +50,7 @@ export default function CountrySalesChart({ sales }: Props) {
 
   return (
     <div className="w-full h-64 mb-8">
-      <h3 className="text-lg font-semibold mb-2">各國銷售與退貨量</h3>
+      <h3 className="text-lg font-semibold mb-2">銷售量最高的10個國家 - 銷售與退貨量</h3>
       <ResponsiveContainer>
         <BarChart
           data={data}

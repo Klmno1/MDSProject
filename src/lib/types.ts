@@ -13,3 +13,30 @@ export type Sale = {
   price: number;
   isReturned: number;
 };
+
+export type ProductsRules = {
+  lhs: string;
+  rhs: string;
+  support: number;
+  confidence: number;
+  lift: number;
+  coverage: number;
+};
+
+export type HolidatysRules = {
+  lhs: string;
+  rhs: string;
+  support: number;
+  confidence: number;
+  lift: number;
+  holiday: string;
+};
+
+export type SeasonsRules = {
+  lhs: string;
+  rhs: string;
+  support: number;
+  confidence: number;
+  lift: number;
+  season: string;
+};
