@@ -7,7 +7,6 @@ import CountrySalesChart from './CountrySalesChart';
 import MonthlySalesChart from './MonthlySalesChart';
 import ReturnStats from './ReturnStats';
 import ProductAssociationRules from './ProductAssociationRules';
-import TimeAssociationRules from './TimeAssociationRules';
 import HolidayAssociationRules from './HolidayAssociationRules';
 import SeasonalAssociationRules from './SeasonalAssociationRules';
 
