@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Link from "next/link"; // import Link
 import "./globals.css";
 import Button from '@mui/material/Button';
 import { DataProvider } from '@/lib/dataContext';
 import { loadProducts, loadSales, loadProductRules, loadHolidaysRules, loadSeasonsRules } from '@/lib/loadExcel';
+import { BarChart3, Home } from 'lucide-react';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,11 +35,37 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className="antialiased font-sans bg-gray-950 text-gray-100">
         <div className="flex min-h-screen">
           <aside className="w-[15%] bg-gray-900 text-gray-100 shadow-2xl p-6 space-y-6 border-r border-gray-800 rounded-r-3xl z-10">
-            <h1 className="text-2xl font-bold">功能選單</h1>
-            <nav className="flex flex-col gap-3">
-              <a href="/product-group" className="transition-transform transform hover:scale-110 hover:brightness-110">
-                <Button variant="contained" color="primary" fullWidth className="!shadow-lg !transition-all !duration-300">商品群分析</Button>
-              </a>
+            <div className="text-2xl font-bold text-center">Menu</div>
+            <nav className="flex flex-col gap-4">
+              {/* Home Button */}
+              <Link href="/">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  disableElevation
+                  className="!shadow-xl !transition-transform !duration-300 !rounded-xl !py-2.5 !text-base 
+                  hover:brightness-110 hover:scale-[1.1] active:scale-[0.98] flex items-center justify-between"
+                >
+                  <Home className="w-6 h-6" />
+                  <div>Home</div>
+                </Button>
+              </Link>
+
+              {/* Product Analysis Button */}
+              <Link href="/product-group">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  disableElevation
+                  className="!shadow-xl !transition-transform !duration-300 !rounded-xl !py-2.5 !text-base 
+                  hover:brightness-110 hover:scale-[1.1] active:scale-[0.98] flex items-center justify-between"
+                >
+                  <BarChart3 className="w-6 h-6" />
+                  <div>Product Analysis</div>
+                </Button>
+              </Link>
             </nav>
           </aside>
           <main className="flex-1 p-10 bg-gray-900 text-gray-100 rounded-l-3xl shadow-inner">

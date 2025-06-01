@@ -80,10 +80,14 @@ export default function SeasonalAssociationRules({
           const maxPage = Math.max(0, Math.ceil(allRules.length / PAGE_SIZE) - 1);
           const pagedRules = allRules.slice(currentPage * PAGE_SIZE, (currentPage + 1) * PAGE_SIZE);
 
+          const headerText = position === 'lhs' 
+            ? 'When this product is a condition (If)'
+            : 'When this product is a result (Then)';
+
           return (
             <div key={position}>
               <h4 className="font-medium text-gray-300 mb-2">
-                Product in {position.toUpperCase()}
+                {headerText}
               </h4>
 
               <ScrollArea className="rounded-md border border-gray-700">
@@ -137,5 +141,5 @@ export default function SeasonalAssociationRules({
     );
   };
 
-  return <div className="space-y-6">{renderTable('Seasonal Association Rules', season)}</div>;
+  return <div className="space-y-6">{renderTable('Seasonal Association Insights', season)}</div>;
 }

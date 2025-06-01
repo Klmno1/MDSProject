@@ -29,14 +29,14 @@ export default function ReturnStats({ sales }: Props) {
   return (
     <div className="mb-8 w-full max-w-sm mx-auto">
       <h3 className="text-lg font-semibold mb-4 text-center">退貨率分析</h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={400}>
         <PieChart>
           <Pie
             data={data}
             dataKey="value"
             nameKey="name"
-            outerRadius={100}
-            label={({ name, percent }) => `${name} ${(percent! * 100).toFixed(1)}%`}
+            outerRadius={100}  // set outer radius for the pie chart
+            label={({ percent }) => `${(percent! * 100).toFixed(1)}%`}
           >
             {data.map((_, index) => (
               <Cell key={index} fill={COLORS[index]} />

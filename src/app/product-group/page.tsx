@@ -25,7 +25,7 @@ export default function ProductGroupPage() {
         <>
           {/* Display selected product name */}
           <h2 className="text-2xl font-bold text-white text-center">
-            {selectedProductName}
+            Product: {selectedProductName}
           </h2>
           <ReturnStats sales={selectedSales} />
           <CountrySalesChart sales={selectedSales} />
