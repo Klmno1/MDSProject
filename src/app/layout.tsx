@@ -66,6 +66,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   <div>Product Analysis</div>
                 </Button>
               </Link>
+
+              {/* Prediction Button */}
+              <Link href="/return-predict">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  disableElevation
+                  className="!shadow-xl !transition-transform !duration-300 !rounded-xl !py-2.5 !text-base 
+                  hover:brightness-110 hover:scale-[1.1] active:scale-[0.98] flex items-center justify-between"
+                >
+                  <div>Return Prediction</div>
+                </Button>
+              </Link>
             </nav>
           </aside>
           <main className="flex-1 p-10 bg-gray-900 text-gray-100 rounded-l-3xl shadow-inner">
