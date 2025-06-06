@@ -4,8 +4,9 @@ import Link from "next/link"; // import Link
 import "./globals.css";
 import Button from '@mui/material/Button';
 import { DataProvider } from '@/lib/dataContext';
-import { loadProducts, loadSales, loadProductRules, loadHolidaysRules, loadSeasonsRules } from '@/lib/loadExcel';
+import { loadProducts, loadSales, loadProductRules, loadHolidaysRules, loadSeasonsRules, loadCustomers } from '@/lib/loadExcel';
 import { BarChart3, Home } from 'lucide-react';
+import { Toaster } from '@/components/ui/toaster';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,6 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const productsRules = await loadProductRules();
   const holidaysRules = await loadHolidaysRules();
   const seasonsRules = await loadSeasonsRules();
+  const customers = await loadCustomers();
 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
@@ -47,7 +49,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   className="!shadow-xl !transition-transform !duration-300 !rounded-xl !py-2.5 !text-base 
                   hover:brightness-110 hover:scale-[1.1] active:scale-[0.98] flex items-center justify-between"
                 >
-                  <Home className="w-6 h-6" />
+                  {/* <Home className="w-6 h-6" /> */}
                   <div>Home</div>
                 </Button>
               </Link>
@@ -83,11 +85,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </nav>
           </aside>
           <main className="flex-1 p-10 bg-gray-900 text-gray-100 rounded-l-3xl shadow-inner">
-            <DataProvider products={products} sales={sales} productsRules={productsRules} holidaysRules={holidaysRules} seasonsRules={seasonsRules}>
+            <DataProvider products={products} sales={sales} productsRules={productsRules} holidaysRules={holidaysRules} seasonsRules={seasonsRules}
+              customers={customers}>
               {children}
             </DataProvider>
           </main>
         </div>
+
+        {/* ✅ Add Toaster here, outside of main layout content */}
+        <Toaster />
       </body>
     </html>
   );

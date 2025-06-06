@@ -40,3 +40,8 @@ export type SeasonsRules = {
   lift: number;
   season: string;
 };
+
+export type Customers = {
+  customerId: string;
+  country: string;
+};

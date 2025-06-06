@@ -2,7 +2,7 @@
 import path from 'path';
 import fs from 'fs';
 import ExcelJS from 'exceljs';
-import type { Product, Sale, ProductsRules, HolidatysRules, SeasonsRules } from '@/lib/types';
+import type { Product, Sale, ProductsRules, HolidatysRules, SeasonsRules, Customers } from '@/lib/types';
 
 function toTitleCase(str: string): string {
   return str
@@ -12,6 +12,7 @@ function toTitleCase(str: string): string {
     .join(' ');
 }
 
+// 要與 Excel 的欄位名稱相同才可以讀的到！！！！
 type RawProduct = {
   ProductUUID: string;
   ProductName: string;
@@ -108,6 +109,18 @@ function renameSeasonsRulesKeys(raw: RawSeasonsRules): SeasonsRules {
   };
 }
 
+type RawCustomers = {
+  customerId: string;
+  country: string;
+};
+
+function renameCustomersKeys(raw: RawCustomers): Customers {
+  return {
+    customerId: raw['customerId'],
+    country: raw['country'],
+  };
+}
+
 
 async function readSheet<T = Record<string, unknown>>(fileName: string): Promise<T[]> {
   const filePath = path.join(process.cwd(), 'src', 'data', fileName);
@@ -168,5 +181,10 @@ export async function loadHolidaysRules(): Promise<HolidatysRules[]> {
 export async function loadSeasonsRules(): Promise<SeasonsRules[]> {
   const raw = await readSheet<RawSeasonsRules>('rules_season.xlsx');
   return raw.map(renameSeasonsRulesKeys);
+}
+
+export async function loadCustomers(): Promise<Customers[]> {
+  const raw = await readSheet<RawCustomers>('customer_country_mapping.xlsx');
+  return raw.map(renameCustomersKeys);
 }
 

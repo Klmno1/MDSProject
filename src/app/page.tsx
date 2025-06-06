@@ -16,6 +16,8 @@ export default function HomePage() {
           <li><strong>Product Group Analysis:</strong> Understand patterns and trends in grouped product behavior.</li>
           <li><strong>Seasonal Trends:</strong> Explore product performance across seasons.</li>
           <li><strong>Holiday Patterns:</strong> Discover how holidays impact sales and returns.</li>
+          <li><strong>Return Prediction:</strong> Predict the probability of a product being returned.</li>
+          <li><strong>Model Explainability:</strong> Understand the key factors influencing return through feature importance.</li>
         </ul>
       </div>
     </div>
