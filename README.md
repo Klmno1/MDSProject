@@ -2,7 +2,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, download all the needed module, run the command:
+First, start the backend Python file FIRST!!!! Link: https://github.com/Klmno1/MDS-Project-Model.git 
+
+Then download all the needed module, run the command:
 
 `yarn`
 
